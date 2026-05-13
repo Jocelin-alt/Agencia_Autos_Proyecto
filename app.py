@@ -34,6 +34,15 @@ def registro():
 
         password = request.form["password"]
 
+        confirm_password = request.form["confirm_password"]
+
+        
+        if password != confirm_password:
+
+            flash(" Las contraseñas no coinciden", "danger")
+
+            return redirect(url_for("registro"))
+
         usuario = autos.registrar_usuario(
             nombre,
             email,
@@ -42,7 +51,7 @@ def registro():
 
         if usuario:
 
-            flash(" Usuario registrado correctamente", "success")
+            flash("Usuario registrado correctamente", "success")
 
             return redirect(url_for("login"))
 
